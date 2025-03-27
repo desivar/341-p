@@ -1,0 +1,25 @@
+{
+  "name": "c",
+  "version": "1.0.0",
+  "description": "Node Project ",
+  "keywords": [
+    "contacts",
+    "app",
+    "node.js"
+  ],
+  "homepage": "https://github.com/desivar/341-p#readme",
+  "bugs": {
+    "url": "https://github.com/desivar/341-p/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desivar/341-p.git"
+  },
+  "license": "ISC",
+  "author": "Desire D Vargas",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
