@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const contactsRoutes = require('./contacts');
 
-router.use('/contacts', contactsRoutes); // Mount the contacts routes under /contacts
-
-// You might have other routes here
+router.use('/contacts', contactsRoutes);
 
 module.exports = router;

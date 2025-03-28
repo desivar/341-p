@@ -1,29 +1,28 @@
-const dotenv = require('dotenv');
-dotenv.config();
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
 
-const { MongoClient } = require('mongodb'); // Corrected import
+let _db;
 
-let database;
-const initDb = (callback) => { // Corrected function name
-  if (database) {
-    console.log('Database is already initialized!');
-    return callback(null, database);
+const initDb = (callback) => {
+  if (_db) {
+    console.log('Db is already initialized!');
+    return callback(null, _db);
   }
   MongoClient.connect(process.env.MONGODB_URL)
-    .then(client => {
-      database = client.db(); // It's generally better to get the database instance here
-      callback(null, database);
+    .then((client) => {
+      _db = client.db('project1'); // Using 'project1' as the database name
+      callback(null, _db);
     })
-    .catch(err => {
+    .catch((err) => {
       callback(err);
     });
 };
 
 const getDb = () => {
-  if (!database) {
+  if (!_db) {
     throw Error('Db not initialized');
   }
-  return database;
+  return _db;
 };
 
 module.exports = {

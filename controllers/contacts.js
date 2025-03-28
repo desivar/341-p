@@ -4,7 +4,9 @@ const ObjectId = require('mongodb').ObjectId;
 const getAll = async (req, res) => {
   try {
     const db = mongodb.getDb();
+    console.log('Database object obtained:', db);
     const contacts = await db.collection('contacts').find().toArray();
+    console.log('Contacts retrieved:', contacts);
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(contacts);
   } catch (error) {
