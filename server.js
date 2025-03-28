@@ -1,15 +1,33 @@
-const express = require('express');
-const routes = require('./routes');
+const mongodb = require('../data/database');
+const ObjectId = require('mongodb').ObjectId;
 
-const app = express();
-const port = process.env.PORT || 5500;
+const getAll = async (req, res) => {
+  try {
+    const db = mongodb.getDb();
+    const contacts = await db.collection('contacts').find().toArray();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(contacts);
+  } catch (error) {
+    console.error('Error getting all contacts:', error);
+    res.status(500).json({ message: 'Failed to retrieve contacts' });
+  }
+};
 
-app.use('/', routes);
+const getById = async (req, res) => {
+  const contactId = new ObjectId(req.params.id);
+  try {
+    const db = mongodb.getDb();
+    const contact = await db.collection('contacts').findOne({ _id: contactId });
+    if (contact) {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(contact);
+    } else {
+      res.status(404).json({ message: 'Contact not found' });
+    }
+  } catch (error) {
+    console.error(`Error getting contact with ID ${req.params.id}:`, error);
+    res.status(500).json({ message: 'Failed to retrieve contact' });
+  }
+};
 
-app.get('/', (req, res) => {
-  res.send('Hello World from root!');
-});
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+module.exports = { getAll, getById };
