@@ -1,0 +1,37 @@
+# GET all contacts
+GET https://three41-p.onrender.com/contacts
+Content-Type: application/json
+
+###
+
+# GET a specific contact by ID 
+GET https://three41-p.onrender.com/contacts/67d3b0be74022c5eccc180cd
+
+
+###
+# POST a new contact
+POST https://three41-p.onrender.com/contacts
+Content-Type: application/json
+
+{
+    "firstName": "Gabriel",
+    "lastName": "Velez",
+    "email": "test@example.com",
+    "favoriteColor": "Blue",
+    "birthday": "1989-01-15"
+}
+
+###
+# PUT to update a contact (REPLACE 'another_contact_id' with a REAL ID from your database)
+PUT https://three41-p.onrender.com/contacts/67d3b0be74022c5eccc180ce
+Content-Type: application/json
+
+{
+    "favoriteColor": "Green"
+}
+###
+
+# DELETE a contact (REPLACE 'yet_another_id' with a REAL ID from your database)
+DELETE https://three41-p.onrender.com/contacts/67e71be2faa1d3498a0287d1
+
+Content-Type: application/json
