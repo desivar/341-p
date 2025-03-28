@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const contactsController = require('../../controllers/contacts');
+const contactsController = require('../controllers/contacts'); // Changed the path
 
-router.get('/', contactsController.getAll); // This will handle GET /contacts
-router.get('/:id', contactsController.getById); // This will handle GET /contacts/:id
+router.get('/', contactsController.getAll);
+router.get('/:id', contactsController.getById);
 
 module.exports = router;
